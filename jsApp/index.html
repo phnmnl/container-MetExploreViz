@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+    <head>
+        <title>MetExplore Visualization</title>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+        <link href="resources/icons/favicon.ico" type="image/x-icon" rel="shortcut icon"/>
+
+        <!--<script async type="text/javascript" src="resources/lib/tulip-javascript/demos/tulip.js"></script>-->
+        <!-- <script  id="microloader" data-app="c2a09d62-4072-4cd8-93fd-00718ff8a8f2" src="bootstrap.js"></script>  -->
+        <script id="microloader" type="text/javascript" src="bootstrap.js"></script> 
+        <!-- The line below must be kept intact for Sencha Cmd to build your application -->
+
+        <script type="text/javascript"> 
+            
+            function init(){
+                function whileMetExploreVizNotLoading(func){
+                    this.reloadMetexploreViz(func);
+                };
+
+                if(parent.document.getElementById('iFrameMetExploreViz')!=null){
+                    var dimensionIFrameMetExploreViz = parent.document.getElementById('iFrameMetExploreViz').getBoundingClientRect();
+                    
+                    document.getElementById("visualisation").style.width = dimensionIFrameMetExploreViz.width+"px";
+                    document.getElementById("visualisation").style.height = dimensionIFrameMetExploreViz.height+"px";
+                }
+                
+                // Launch metExploreViz after microloader loading 
+                Ext.Microloader.onCachedAssetsReady = function(){
+                    window.location.reload();
+                };  
+
+                Ext.Microloader.onAllUpdatedAssetsReady = function(){
+                    Ext.onReady(function() {
+                        var visu = new metExploreViz('visualisation', parent);
+                        // Create metExploreViz variable in parent DOM
+                        parent.metExploreViz = metExploreD3;
+                    });
+                }; 
+            }
+            document.addEventListener("DOMContentLoaded", init, false);
+            
+        </script>
+    </head>
+
+    <body>
+        <div id ="visualisation" style="height:600px; width:100%;">
+            <!-- Proposer un fichier json et un fichier mapping -->
+        </div>
+    </body>
+</html>
