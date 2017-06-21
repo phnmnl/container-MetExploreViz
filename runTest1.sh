@@ -1,1 +1,0 @@
-which deployApp4Galaxy
