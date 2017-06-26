@@ -1,1 +1,1 @@
-which deployApp4Galaxy
+which deployApp4Galaxy.sh
