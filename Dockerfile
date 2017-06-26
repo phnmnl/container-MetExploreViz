@@ -12,10 +12,10 @@ LABEL software="SBML2MetexploreJsonGraph"
 RUN apk -U add bash gawk
 ADD jsApp /opt/jsApp
 ADD deployApp4Galaxy.sh /usr/local/bin/deployApp4Galaxy.sh
-RUN chmod +x /usr/local/bin/deployApp4Galaxy.sh
+RUN chmod 777 /usr/local/bin/deployApp4Galaxy.sh
 
 
 # Test Scripts
 ADD runTest1.sh /usr/local/bin/runTest1.sh
-RUN chmod +x /usr/local/bin/runTest1.sh
+RUN chmod a+x /usr/local/bin/runTest1.sh
 
